@@ -8,22 +8,23 @@ describe('Plane', function(){
     plane = new Plane();
     airport = jasmine.createSpyObj('airport',['clearForLanding', 'clearForTakeOff']);
   });
+  
+  describe('under normal conditions',function(){
+    beforeEach(function(){
+      // airport.clearForLanding.and.returnValue(true);
+      // airport.clearForTakeoff.and.returnValue(true);
+    });
+    it('can land at an airport', function(){
+      plane.land(airport);
+      expect(airport.clearForLanding).toHaveBeenCalledWith(plane);
+    });
 
-  it('can land at an airport', function(){
-    plane.land(airport);
-    expect(airport.clearForLanding).toHaveBeenCalledWith(plane);
-  });
+    it('can takeoff from an airport', function(){
+      plane.land(airport);
+      plane.takeoff(airport);
+      expect(airport.clearForTakeOff).toHaveBeenCalledWith(plane);
+    });
 
-  it('can takeoff from an airport', function(){
-    plane.land(airport);
-    plane.takeoff();
-    expect(airport.clearForTakeOff).toHaveBeenCalled();
   });
 
 });
-  // it('can land at an airport', function(){
-  //   plane = new Plane();
-  //   expect(plane.land).not.toBeUndefined()
-  // });
-
-
