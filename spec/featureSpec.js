@@ -30,14 +30,14 @@ describe('Feature Test:', function(){
 
   describe('under stormy conditions', function(){
 
-    it('blocks takeoff when weather is stormy', function(){
+    it('takeoff is blocked', function(){
       spyOn(Math,'random').and.returnValue(0);
       plane.land(airport);
       spyOn(airport._weather,'isStormy').and.returnValue(true);
       expect(function(){ plane.takeoff(airport);}).toThrowError('cannot takeoff during storm');
       expect(airport.planes()).toContain(plane);
     });
-    it('blocks landing when weather is stormy', function(){
+    it('landing is blocked', function(){
       spyOn(airport._weather,'isStormy').and.returnValue(true);
       expect(function(){ plane.land(airport); }).toThrowError('cannot land during storm');
     });
